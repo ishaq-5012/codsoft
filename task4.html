@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation System</title>
+   <style>
+     body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: purple;
+}
+
+h1, h2 {
+    color: green;
+}
+
+#user-preferences, #recommendations {
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color:red;
+}
+
+     </style>
+</head>
+<body>
+    <h1>Movie Recommendation System</h1>
+    <div id="user-preferences">
+        <h2>Select Your Favorite Genre:</h2>
+        <select id="genre">
+            <option value="Action">Action</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Drama">Drama</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Horror">Horror</option>
+            <option value="Romance">Romance</option>
+            <option value="Sci-Fi">Sci-Fi</option>
+            <option value="Thriller">Thriller</option>
+        </select>
+        <button id="recommend">Get Recommendations</button>
+    </div>
+    <div id="recommendations">
+        <h2>Recommended Movies:</h2>
+        <ul id="recommendation-list"></ul>
+    </div>
+    <script>
+  document.getElementById('recommend').addEventListener('click', function() {
+    const genre = document.getElementById('genre').value;
+    const recommendations = getRecommendations(genre);
+    displayRecommendations(recommendations);
+});
+
+function getRecommendations(genre) {
+    const movies = [
+        { title: "Master", genre: "Action" },
+        { title: "Anbe Sivam", genre: "Comedy" },
+       { title: "Dada", genre: "Drama" },
+        { title: "kanguva", genre: "Fantasy" },
+        { title: "psycho", genre: "Horror" },
+        { title: "'96", genre: "Romance" },
+        { title: "Indru Netru Naalai", genre: "Sci-Fi" },
+        { title: "Raatsasan", genre: "Thriller" }
+    ];
+
+    return movies.filter(movie => movie.genre === genre);
+}
+
+function displayRecommendations(recommendations) {
+    const recommendationList = document.getElementById('recommendation-list');
+    recommendationList.innerHTML = '';
+    recommendations.forEach(movie => {
+        const li = document.createElement('li');
+        li.textContent = movie.title;
+        recommendationList.appendChild(li);
+    });
+}
+
+  </script>
+</body>
+</html>
